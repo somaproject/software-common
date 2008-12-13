@@ -5,7 +5,7 @@
 #include <GL/gl.h>
 #include <vector>
 #include <list>
-
+#include <string>
 //
 // options are GL_VERTEX_SHADER and GL_FRAGMENT_SHADER
 

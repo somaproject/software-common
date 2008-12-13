@@ -1,7 +1,8 @@
 #include "shaders.h"
 #include <iostream>
 #include <fstream>
-
+#include <string.h>
+#include <stdexcept>
 using namespace std; 
 
 GLuint loadGPUShader(const std::string & shaderSrc, GLuint shaderType)
@@ -26,7 +27,7 @@ GLuint loadGPUShader(const std::string & shaderSrc, GLuint shaderType)
     int loglen; 
     glGetShaderInfoLog(shdr, 1000, &loglen, logmessage); 
     cerr << logmessage << endl; 
-    exit(1);
+    throw std::runtime_error("Error compiling vertex shader");
   }
   return shdr; 
 }
@@ -72,7 +73,8 @@ GLuint createGPUProgram(const std::list<GLuint> & shaders)
   if (param != GL_TRUE) {
     glGetProgramInfoLog(gpuProg, 10000, &progLogLen, progLog); 
     cout << progLog << endl; 
-    exit(1); 
+    throw std::runtime_error("Error compiling vertex shader");
+    
   }
 
   return gpuProg; 
